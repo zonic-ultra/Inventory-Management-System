@@ -1,0 +1,63 @@
+package com.dendev.Inventory_Management_System.models;
+
+import com.dendev.Inventory_Management_System.enums.UserRole;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import lombok.Builder;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name = "products")
+@Data
+@Builder
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Name is required!")
+    private String name;
+
+    @Column(unique = true)
+    @NotBlank(message = "SKU is required!")
+    private String sku;
+
+    @Positive(message = "Product price must be greater than")
+    private BigDecimal price;
+
+    @Min(value = 0, message = "stock quantity cannot be negative")
+    private Integer stockQuantity;
+
+    private int description;
+
+    private LocalDateTime expiryDate;
+
+    private String  imageUrl;
+
+    private final LocalDateTime createdAt = LocalDateTime.now();
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sku='" + sku + '\'' +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                ", description=" + description +
+                ", expiryDate=" + expiryDate +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
+}
