@@ -1,11 +1,9 @@
 package com.dendev.Inventory_Management_System.dtos;
 
+import com.dendev.Inventory_Management_System.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +19,7 @@ public class Response {
 
     //For login
     private String token;
-    private String note;
+    private UserRole role;
     private String expirationTime;
 
     //For pagination
@@ -42,4 +40,5 @@ public class Response {
     private List<TransactionDto> transactions;
 
     private final LocalDateTime timestamp = LocalDateTime.now();
+
 }
