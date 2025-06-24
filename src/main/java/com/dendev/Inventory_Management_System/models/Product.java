@@ -21,30 +21,29 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required!")
+    @NotBlank(message = "Name is required")
     private String name;
 
     @Column(unique = true)
-    @NotBlank(message = "SKU is required!")
+    @NotBlank(message = "SKU is required")
     private String sku;
 
-    @Positive(message = "Product price must be greater than")
+    @Positive(message = "product price must be a positive value")
     private BigDecimal price;
 
     @Min(value = 0, message = "stock quantity cannot be negative")
     private Integer stockQuantity;
 
-    private int description;
-
+    private String description;
     private LocalDateTime expiryDate;
-
-    private String  imageUrl;
+    private String imageUrl;
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
 
     @Override
     public String toString() {
@@ -54,7 +53,7 @@ public class Product {
                 ", sku='" + sku + '\'' +
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +
-                ", description=" + description +
+                ", description='" + description + '\'' +
                 ", expiryDate=" + expiryDate +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", createdAt=" + createdAt +

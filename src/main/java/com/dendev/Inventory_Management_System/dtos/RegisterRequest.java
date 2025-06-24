@@ -1,6 +1,7 @@
 package com.dendev.Inventory_Management_System.dtos;
 
 import com.dendev.Inventory_Management_System.enums.UserRole;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,9 @@ public class RegisterRequest {
 
     @NotBlank(message = "Password is required!")
     private String password;
+
+    @NotBlank(message = "Phone number is required!")
+    private String phoneNumber;
 
     private UserRole role;
 }

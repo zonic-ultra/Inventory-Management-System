@@ -17,7 +17,7 @@ public class TransactionFilter {
                return criteriaBuilder.conjunction();//
            }
 
-           String searchPattern = "%"+searchValue.toLowerCase()+"%";
+           String searchPattern = "%" + searchValue.toLowerCase() + "%";
 
            //create a list to hold my predicates;
            List<Predicate>predicates = new ArrayList<>();
