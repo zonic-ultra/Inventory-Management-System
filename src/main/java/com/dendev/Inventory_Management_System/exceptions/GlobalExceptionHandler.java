@@ -35,8 +35,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidCredentialException.class)
-    public ResponseEntity<Response> handleInvalidCredentialException(NameValueRequiredException exception){
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<Response> handleInvalidCredentialsException(InvalidCredentialsException exception){
         Response response = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message(exception.getMessage())
