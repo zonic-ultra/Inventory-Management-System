@@ -54,16 +54,17 @@ public class TransactionFilter {
 
            //safely join to check the category fields
            if (root.getJoins().stream().noneMatch(j->j.getAttribute().getName().equals("product")) &&
-           root.join("product").getJoins().stream().noneMatch(j -> j.getAttribute().getName().equals("category"))){
+                   root.join("product").getJoins().stream().noneMatch(j -> j.getAttribute().getName().equals("category"))){
                root.join("product", JoinType.LEFT).join("category", JoinType.LEFT);
            }
-           predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.join("product", JoinType.LEFT).join("category", JoinType.LEFT).get("name")),searchPattern));
+           predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.join("product", JoinType.LEFT)
+                   .join("category", JoinType.LEFT).get("name")),searchPattern));
 
            //combine all predicates with OR
            return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
        };
     }
-    public static Specification<Transaction> aspectJTypeFilter(int month, int year){
+    public static Specification<Transaction> byMonthAndYear(int month, int year){
         return (root, query, criteriaBuilder) -> {
             Expression<Integer> monthExpression = criteriaBuilder.function("month", Integer.class, root.get("createdAt"));
             Expression<Integer> yearExpression = criteriaBuilder.function("year", Integer.class, root.get("createdAt"));

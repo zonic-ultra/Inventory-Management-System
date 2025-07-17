@@ -36,6 +36,9 @@ public class Response {
     private CategoryDto category;
     private List<CategoryDto> categories;
 
+    private ProductDto product;
+    private List<ProductDto> products;
+
     private TransactionDto transaction;
     private List<TransactionDto> transactions;
 

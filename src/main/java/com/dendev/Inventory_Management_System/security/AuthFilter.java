@@ -1,7 +1,5 @@
 package com.dendev.Inventory_Management_System.security;
 
-import ch.qos.logback.core.util.StringUtil;
-import com.dendev.Inventory_Management_System.models.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

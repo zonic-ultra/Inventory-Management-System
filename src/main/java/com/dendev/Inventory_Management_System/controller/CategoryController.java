@@ -11,29 +11,30 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("categories")
+@RequestMapping("/api/categories")
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> getAllCategories(){
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Response> getCatById(@PathVariable Long id){
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> createCat(@RequestBody @Valid CategoryDto categoryDto){
         return ResponseEntity.ok(categoryService.createCategory(categoryDto));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Response> updateCat(@PathVariable Long id, CategoryDto categoryDto){
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Response> updateCat(@PathVariable Long id, @Valid @RequestBody CategoryDto categoryDto){
         return ResponseEntity.ok(categoryService.updateCategory(id,categoryDto));
     }
 

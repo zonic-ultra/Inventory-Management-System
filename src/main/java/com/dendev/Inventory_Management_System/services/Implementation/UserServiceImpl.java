@@ -1,4 +1,4 @@
-package com.dendev.Inventory_Management_System.services.Implementaion;
+package com.dendev.Inventory_Management_System.services.Implementation;
 
 import com.dendev.Inventory_Management_System.dtos.LoginRequest;
 import com.dendev.Inventory_Management_System.dtos.RegisterRequest;

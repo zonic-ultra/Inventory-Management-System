@@ -1,4 +1,4 @@
-package com.dendev.Inventory_Management_System.services.Implementaion;
+package com.dendev.Inventory_Management_System.services.Implementation;
 
 import com.dendev.Inventory_Management_System.dtos.CategoryDto;
 import com.dendev.Inventory_Management_System.dtos.Response;
@@ -35,18 +35,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Response getAllCategories() {
-
         List<Category> categories = categoryRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
         categories.forEach(category -> category.setProducts(null));
 
-        List<CategoryDto> categoryDtos = modelMapper.map(categories, new TypeToken<List<CategoryDto>>(){}.getType());
+        List<CategoryDto> categoryDtoList = modelMapper.map(categories, new TypeToken<List<CategoryDto>>() {
+        }.getType());
+
         return Response.builder()
                 .status(200)
                 .message("success")
-                .categories(categoryDtos)
+                .categories(categoryDtoList)
                 .build();
-
     }
 
     @Override

@@ -27,7 +27,7 @@ public class UserController {
        return ResponseEntity.ok(userService.getUserById(userId));
    }
 
-   @GetMapping("/currentUser")
+   @GetMapping("/current")
    public ResponseEntity<User> getCurrentLoggedInUsers(){
        return ResponseEntity.ok(userService.getCurrentLoggedInUsers());
    }

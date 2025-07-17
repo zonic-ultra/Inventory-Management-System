@@ -18,7 +18,7 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @NotBlank(message = "Name is required!")
     private String name;
@@ -29,7 +29,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
